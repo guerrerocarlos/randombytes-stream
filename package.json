@@ -1,0 +1,39 @@
+{
+  "name": "randombytes-stream",
+  "version": "1.0.0",
+  "description": "A crypto.randomBytes as infinity Readable Stream",
+  "keywords": [
+    "random",
+    "randombytes",
+    "stream"
+  ],
+  "homepage": "https://github.com/fanatid/randombytes-stream",
+  "bugs": {
+    "url": "https://github.com/fanatid/randombytes-stream/issues"
+  },
+  "license": "MIT",
+  "author": "Kirill Fomichev <fanatid@ya.ru> (https://github.com/fanatid)",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fanatid/randombytes-stream.git"
+  },
+  "scripts": {
+    "coverage": "nyc node test/*.js",
+    "lint": "standard",
+    "test": "npm run lint && npm run test",
+    "unit": "node test/index.js"
+  },
+  "dependencies": {
+    "inherits": "^2.0.1",
+    "randombytes": "^2.0.3"
+  },
+  "devDependencies": {
+    "nyc": "^8.1.0",
+    "standard": "^8.0.0",
+    "tape": "^4.6.0"
+  }
+}
