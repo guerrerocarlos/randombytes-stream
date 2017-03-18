@@ -24,23 +24,29 @@ RandomBytesStream.prototype._read = function(size) {
 
     if (err) self.emit('error', err)
     else {
-      if (self.count > self.max) {
-        self.push(null)
+      if (self.max == undefined) {
+        self.push(buf)
       } else {
-        if (self.count + size < self.max) {
-          self.push(buf)
-          self.count = self.count + size
+        if (self.count > self.max) {
+          self.push(null)
         } else {
-          var nbuf = new Buffer(self.max - self.count)
-          for (var i = 0; i < buf.length; i++) {
-            if (self.count < self.max) {
-              nbuf[i] = buf[i]
-              self.count = self.count + 1
+
+          if (self.count + size < self.max) {
+            self.push(buf)
+            self.count = self.count + size
+          } else {
+            var nbuf = new Buffer(self.max - self.count)
+            for (var i = 0; i < buf.length; i++) {
+              if (self.count < self.max) {
+                nbuf[i] = buf[i]
+                self.count = self.count + 1
+              }
             }
+            self.push(nbuf)
           }
-          self.push(nbuf)
         }
       }
+
     }
 
   })
