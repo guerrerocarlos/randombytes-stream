@@ -18,6 +18,16 @@ RandomBytesStream()
   .on('data', (data) => process.stdout.write(data.toString()))
 ```
 
+Specific byte size:
+
+```js
+#!/usr/bin/env node
+const RandomBytesStream = require('randombytes-stream')
+
+RandomBytesStream(33 * 1024) // will output exactly 33 Kb of random data 
+  .on('data', (data) => process.stdout.write(data.toString()))
+```
+
 ## LICENSE
 
 MIT
